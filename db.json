@@ -1,0 +1,4 @@
+{"__v":0,"_id":{"$oid":"55828568e6577aac19a2c4ae"},"completed":true,"name":"EmberJS","note":"Getting better everyday","updated_at":{"$date":"2015-06-18T08:46:32.054Z"}}
+{"__v":0,"_id":{"$oid":"55828bfa7d874d4017f54cf4"},"completed":true,"name":"NodeJS","note":"Monthly","updated_at":{"$date":"2015-06-18T09:14:34.548Z"}}
+{"__v":0,"_id":{"$oid":"55828bfa7d874d4017f54cf5"},"completed":true,"name":"AngularJS","note":"everyday","updated_at":{"$date":"2015-06-18T09:14:34.552Z"}}
+{"__v":0,"_id":{"$oid":"55b21623c01c47301cd9dfac"},"completed":true,"name":"EmberJS","note":"Getting better everyday","updated_at":{"$date":"2015-07-24T10:40:35.401Z"}}
