@@ -11,10 +11,8 @@ var users = require('./routes/user');
 var engine  = require( 'ejs-locals' );
 var app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -22,7 +20,6 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
-
 
 var db = mongoose.connect('mongodb://localhost/chefonline-dev', function(err)
 {
@@ -39,41 +36,39 @@ var db = mongoose.connect('mongodb://localhost/chefonline-dev', function(err)
   updated_at: { type: Date, default: Date.now },
 });
 
+ var blogSchema = new mongoose.Schema({
+  post_title: String,
+  description: String,
+  published_date:  { type: Date, default: Date.now },
+  updated_at: { type: Date, default: Date.now },
+});
+
+
 var Todo = mongoose.model('Todo', TodoSchema);
-/*var mydata=[{name: 'NodeJS', completed: true, note: 'Monthly'},{name: 'AngularJS', completed: true, note: 'everyday'},{name: 'EmberJS', completed: true, note: 'Getting better everyday'}];
-for (var i = 0; i < mydata.length; i++) {
-  Todo.create(mydata[i], function(err, todo){
+var blog = mongoose.model('myblog', blogSchema);
+var mydata=[{post_title: 'Blog NodeJS', description: "ABCD"},{name: 'AngularJS', description: "XYZ"}];
+for (var i = 0; i < mydata.length; i++) 
+{
+  blog.create(mydata[i], function(err, todo){
     if(err) console.log(err);
     else console.log(todo);
 });
-};*/
+};
 
 
-app.get('/', routes.index);
+/*app.get('/', routes.index);*/
 app.get('/users', users.list);
 app.post('/create',users.CreateCourse);
 
-app.get('/edit/:id',function(req,res)
-{
-	Todo.findById(req.params.id, function ( err, todo )
-	{
-	 res.render("edit", { todo: todo}); 
-	});
-});
+app.get('/edit/:id',users.edit);
+
 
 app.get('/add',function(req,res)
 {
 	res.render("add_item");
 });
 
-app.get("/account",function(req,res)
-{
-	 Todo.find(function(err,records)
-	 {
-		res.render('account', { mydata: records});
-	 });
-});
-
+app.get("/",users.list);
 app.get('/delete/:id', users.destroy);
 
 /// catch 404 and forwarding to error handler

@@ -3,8 +3,7 @@ var mongoose = require('mongoose');
 exports.list = function(req, res){
 	var Todo = mongoose.model('Todo');
 	Todo.find(function(err,records){
-	/*res.send(records);	*/
-    res.render('account', { mydata: records});
+	res.send(records);	
 	});
 };
 exports.CreateCourse=function(req,res)
@@ -25,7 +24,7 @@ exports.edit=function(req,res)
 	 var Todo = mongoose.model('Todo');
 	 Todo.findById(req.params.id, function ( err, todo )
 	 {
-	 res.render("edit", { todo: todo}); 
+	  res.render(todo);	
 	});
 };
 
